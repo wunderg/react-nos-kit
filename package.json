@@ -12,31 +12,33 @@
     "lint:watch": "npm run lint -- --watch",
     "clean-dist": "npm run remove-dist && mkdir dist",
     "remove-dist": "rimraf ./dist",
+    "build": "npm run clean-dist && npm run build:html && npm run build:client && npm run build:server",
     "build:html": "node tools/buildHtml.js",
     "build:server": "babel -d ./dist ./server -s",
     "build:client": "node tools/buildClient.js",
-    "build": "npm run clean-dist && npm run build:html && npm run build:client && npm run build:server",
+    "heroku-postbuild": "npm run build",
     "test": "mocha tools/testSetup.js \"src/**/*.spec.js\" --reporter progress",
     "test:cover": "babel-node node_modules/isparta/bin/isparta cover --root src --report html node_modules/mocha/bin/_mocha -- --require ./tools/testSetup.js \"src/**/*.spec.js\" --reporter progress",
     "test:cover:travis": "babel-node node_modules/isparta/bin/isparta cover --root src --report lcovonly _mocha -- --require ./tools/testSetup.js \"src/**/*.spec.js\" && cat ./coverage/lcov.info | node_modules/coveralls/bin/coveralls.js",
-    "test:watch": "npm run test -- --watch",
-    "heroku-postbuild": "npm run build"
+    "test:watch": "npm run test -- --watch"
   },
 
   "engines": {
     "node": "6.2.1",
-    "npm": "3.8.6"
+    "npm": "3.9.3"
   },
   "author": "Oleg Umarov",
   "license": "MIT",
   "dependencies": {
     "body-parser": "1.15.2",
     "express": "4.14.0",
+    "extract-text-webpack-plugin": "1.0.1",
     "object-assign": "4.1.0",
     "react": "15.0.2",
     "react-dom": "15.0.2",
     "react-redux": "4.4.5",
     "react-router": "2.4.0",
+    "rimraf": "2.5.2",
     "redux": "3.5.2"
   },
   "devDependencies": {
@@ -63,7 +65,6 @@
     "eslint-plugin-jsx-a11y": "1.0.4",
     "eslint-plugin-react": "5.0.1",
     "eslint-watch": "2.1.11",
-    "extract-text-webpack-plugin": "1.0.1",
     "file-loader": "0.8.5",
     "isparta": "4.0.0",
     "mocha": "2.4.5",
@@ -74,7 +75,6 @@
     "react-addons-test-utils": "15.0.2",
     "redux-immutable-state-invariant": "1.2.3",
     "replace": "0.3.0",
-    "rimraf": "2.5.2",
     "sass-loader": "3.2.0",
     "sinon": "1.17.4",
     "sinon-chai": "2.8.0",
