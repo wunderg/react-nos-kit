@@ -23,7 +23,7 @@ module.exports = {
     new webpack.DefinePlugin(GLOBALS), // Tells React to build in prod mode. https://facebook.github.io/react/downloads.html
     new ExtractTextPlugin('styles.css'),
     new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin({compres: {warnings: false}})
+    new webpack.optimize.UglifyJsPlugin({compress: {warnings: false}})
   ],
   module: {
     loaders: [
