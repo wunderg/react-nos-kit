@@ -19,6 +19,7 @@ browserSync({
   ui: {
     port: 3001
   },
+  proxy: "http://localhost:9000",
   server: {
     baseDir: 'src',
 
