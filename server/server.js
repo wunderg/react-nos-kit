@@ -15,9 +15,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // apiRouter(app, express);
 
-  const staticPath = path.join(__dirname, './dist');
+if (isProduction) {
+  const staticPath = path.join(__dirname, './');
   app.use(express.static(staticPath));
   // appRouter(app, express, staticPath);
+}
 
 app.listen(port, err => {
   if (err) {
