@@ -10,7 +10,20 @@ const GLOBALS = {
 module.exports = {
   debug: true,
   // devtool: 'source-map', // more info:https://webpack.github.io/docs/build-performance.html#sourcemaps and https://webpack.github.io/docs/configuration.html#devtool
-  noInfo: true, // set to false to see a list of every file being bundled.
+  quiet: false,
+  // It suppress everything except error, so it has to be set to false as well
+  // to see success build.
+  noInfo: false,
+  stats: {
+    // Config for minimal console.log mess.
+    assets: false,
+    colors: true,
+    version: false,
+    hash: false,
+    timings: false,
+    chunks: false,
+    chunkModules: false
+  },
   entry: './src/index',
   target: 'web', // necessary per https://webpack.github.io/docs/testing.html#compile-and-test
   output: {
