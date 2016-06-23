@@ -7,13 +7,12 @@
 // Allowing console calls below since this is a build file.
 /* eslint-disable no-console */
 
-import fs from 'fs';
-import {chalkSuccess, chalkError} from './chalkConfig';
-import cheerio from 'cheerio';
+const fs = require('fs');
+const cheerio = require('cheerio');
 
 fs.readFile('src/index.html', 'utf8', (readError, markup) => {
   if (readError) {
-    return console.log(chalkError(readError));
+    return console.log(readError);
   }
 
   const $ = cheerio.load(markup);
@@ -23,9 +22,9 @@ fs.readFile('src/index.html', 'utf8', (readError, markup) => {
 
   fs.writeFile('dist/index.html', $.html(), 'utf8', (writeError) => {
     if (writeError) {
-      return console.log(chalkError(writeError));
+      return console.log(writeError);
     }
-    console.log(chalkSuccess('index.html written to /dist'));
+    console.log('index.html written to /dist');
 
     return writeError;
   });
