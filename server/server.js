@@ -10,7 +10,6 @@ const port = isProduction ? (process.env.PORT || 80) : 9000;
 
 const app = express();
 
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
