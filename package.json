@@ -3,14 +3,11 @@
   "version": "0.1.0",
   "description": "React Node Started Kit",
   "scripts": {
-    "setup": "node tools/setup/setupMessage.js && npm install && node tools/setup/setup.js",
-    "remove-demo": "babel-node tools/removeDemo.js",
     "start-message": "babel-node tools/startMessage.js",
     "prestart": "npm-run-all --parallel start-message remove-dist",
     "start": "npm-run-all --parallel test:watch open:src lint:watch start-server",
     "start-server": "nodemon --exec babel-node ./server/server.js",
     "open:src": "babel-node tools/srcServer.js",
-    "open:dist": "babel-node tools/distServer.js",
     "lint": "esw webpack.config.* src tools",
     "lint:watch": "npm run lint -- --watch",
     "clean-dist": "npm run remove-dist && mkdir dist",
@@ -23,6 +20,11 @@
     "test:cover": "babel-node node_modules/isparta/bin/isparta cover --root src --report html node_modules/mocha/bin/_mocha -- --require ./tools/testSetup.js \"src/**/*.spec.js\" --reporter progress",
     "test:cover:travis": "babel-node node_modules/isparta/bin/isparta cover --root src --report lcovonly _mocha -- --require ./tools/testSetup.js \"src/**/*.spec.js\" && cat ./coverage/lcov.info | node_modules/coveralls/bin/coveralls.js",
     "test:watch": "npm run test -- --watch"
+  },
+
+  "engines": {
+    "node": "6.2.1",
+    "npm": "3.8.6"
   },
   "author": "Oleg Umarov",
   "license": "MIT",
