@@ -1,9 +1,11 @@
 import axios from 'axios';
 import * as ACTIONS from './constants/actionTypes.js';
 
+
 function saveToLocalStorage(token) {
   localStorage.setItem('id_token', token);
 }
+
 
 function requestSignup(creds) {
   return {
@@ -15,7 +17,9 @@ function requestSignup(creds) {
 }
 
 function recieveSignup(user) {
-  console.log(user, 'user');
+  if (user.data && user.data.id_token) {
+    saveToLocalStorage(user.data.id_token);
+  }
   return {
     type: ACTIONS.SIGNUP_SUCCESS,
     isFetching: false,

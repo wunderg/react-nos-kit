@@ -18,7 +18,7 @@ class AboutPage extends React.Component {
   render() {
     return (
       <div>
-        <h2 className="alt-header">About dynamic</h2>
+        <h2 className="alt-header">About dynamic 22</h2>
         <p>
         </p>
         <p>
