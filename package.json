@@ -52,6 +52,7 @@
     "express-validator": "2.20.8",
     "extract-text-webpack-plugin": "1.0.1",
     "file-loader": "0.8.5",
+    "http-proxy-middleware": "0.16.0",
     "lodash": "4.13.1",
     "lusca": "1.4.1",
     "mongoose": "4.5.1",

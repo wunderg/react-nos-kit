@@ -4,6 +4,7 @@ export default (app, express, staticPath) => {
   app.use('/', appRouter);
 
   appRouter.get('/about', (req, res) => {
+    console.log('hello');
     res.sendFile('index.html', {
       root: staticPath
     });
