@@ -1,6 +1,7 @@
 import * as ACTIONS from '../actions/constants/actionTypes.js';
 
 export default (state = {}, action) => {
+  console.log(action, 'action');
   switch (action.type) {
     case ACTIONS.LOGIN_REQUEST:
       return {...state, isFetching: true, isAuthenticated: false, name: action.creds.email};

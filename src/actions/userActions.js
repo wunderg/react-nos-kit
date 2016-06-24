@@ -15,7 +15,7 @@ function requestSignup(creds) {
 }
 
 function recieveSignup(user) {
-  saveToLocalStorage(user.data.id_token);
+  console.log(user, 'user');
   return {
     type: ACTIONS.SIGNUP_SUCCESS,
     isFetching: false,
@@ -34,6 +34,7 @@ function signupError(message) {
 }
 
 export function signupUser(creds) {
+  console.log('call', creds);
   return dispatch => {
     dispatch(requestSignup(creds));
     return axios.post('api/signup', creds)

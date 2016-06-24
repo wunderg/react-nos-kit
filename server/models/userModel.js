@@ -1,52 +1,47 @@
-import bcrypt from 'bcrypt-nodejs';
-import crypto from 'crypto';
 import mongoose from 'mongoose';
+import bcrypt from 'bcrypt-nodejs';
 
 const userSchema = new mongoose.Schema({
-  email: { type: String, unique: true },
+  email: {
+    type: String,
+    unique: true,
+    lowercase: true
+  },
+
   password: String,
-  passwordResetToken: String,
-  passwordResetExpires: Date,
 
-  github: String,
-
-  profile: {
-    name: { type: String, default: ''},
-    gender: { type: String, default: ''},
-    location: { type: String, default: ''},
-    website: { type: String, default: ''},
-    picture: { type: String, default: ''}
+  name: {
+    type: String,
+    unique: true
   }
-}, { timestamps: true });
+});
 
-userSchema.pre('save', function(next) {
+userSchema.pre('save', function hashPassword(next) {
   const user = this;
-  if (!user.isModified('password')) {
-    return next();
-  }
 
   bcrypt.genSalt(10, (err, salt) => {
     if (err) {
       return next(err);
     }
 
-    bcrypt.hash(user.password, salt, null, (err, hash) => {
-      if (err) {
+    bcrypt.hash(user.password, salt, null, (err2, hash) => {
+      if (err2) {
         return next(err);
       }
 
       user.password = hash;
+      next();
     });
   });
 });
 
-userSchema.methods.gravatar = function (size = 200) {
-  if (!this.email) {
-    return `https://gravatar.com/avatar/?s=${size}&d=retro`;
-  }
-
-    const md5 = crypto.createHash('md5').update(this.email).digest('hex');
-    return `https://gravatar.com/avatar/${md5}?s=${size}&d=retro`;
+userSchema.methods.comparePassword = function comparePass(canditatePassword, callback) {
+  bcrypt.compare(canditatePassword, this.password, (err, isMatch) => {
+    if (err) {
+      return callback(err);
+    }
+    callback(null, isMatch);
+  });
 };
 
-export default mongoose.model('User', userSchema);
+export default mongoose.model('user', userSchema);

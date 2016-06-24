@@ -10,7 +10,6 @@ export default (app, express, staticPath) => {
   });
 
   appRouter.get('/about', (req, res) => {
-    console.log('about');
     res.sendFile('index.html', {
       root: staticPath
     });
