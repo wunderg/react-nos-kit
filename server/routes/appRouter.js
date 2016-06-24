@@ -3,8 +3,14 @@ export default (app, express, staticPath) => {
 
   app.use('/', appRouter);
 
+  appRouter.get('/', (req, res) => {
+    res.sendFile('index.html', {
+      root: staticPath
+    });
+  });
+
   appRouter.get('/about', (req, res) => {
-    console.log('hello');
+    console.log('about');
     res.sendFile('index.html', {
       root: staticPath
     });
@@ -17,6 +23,12 @@ export default (app, express, staticPath) => {
   });
 
   appRouter.get('/signup', (req, res) => {
+    res.sendFile('index.html', {
+      root: staticPath
+    });
+  });
+
+  appRouter.get('/about', (req, res) => {
     res.sendFile('index.html', {
       root: staticPath
     });

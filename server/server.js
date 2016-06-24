@@ -21,7 +21,7 @@ const isProduction = process.env.NODE_ENV === 'production' ? true : false
 const port = isProduction ? (process.env.PORT || 80) : 9000;
 
 const app = express();
-const staticPath = path.join(__dirname, './');
+const staticPath = isProduction ? path.join(__dirname, './') : path.join(__dirname, '../dist');
 
 
 mongoose.connect(process.env.MONGODB_URI || process.env.MONGOLAB_URI);

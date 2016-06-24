@@ -43,7 +43,7 @@ browserSync({
 
       historyApiFallback(),
 
-      proxy('/api', {target: "http://localhost:9000/"})
+      proxy('/', {target: "http://localhost:9000/"})
 
     ]
   },

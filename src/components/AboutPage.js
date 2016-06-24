@@ -6,7 +6,7 @@ import '../styles/about-page.css';
 const AboutPage = () => {
   return (
     <div>
-      <h2 className="alt-header">About</h2>
+      <h2 className="alt-header">About dynamic</h2>
       <p>
       </p>
       <p>
