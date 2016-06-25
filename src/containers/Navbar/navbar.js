@@ -1,30 +1,39 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
+import Drawer from 'material-ui/Drawer';
+import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
+import FontIcon from 'material-ui/FontIcon';
+import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
+
+import styles from './navbar_styles.js';
 
 class Navbar extends Component {
-
-  componentDidMount() {
+  constructor(props) {
+    super(props);
+    this.state = {open: false, value: 3};
   }
 
   render() {
     if (!this.props.isAuthenticated) {
       return (
-        <nav>
-          <div className="nav-wrapper">
-            <Link to={`/`} className="brand-logo">React-NOS</Link>
-            <a href="#" data-activates="mobile-demo" className="button-collapse">
-              <i className="fa fa-align-justify"></i>
-            </a>
-            <ul className="right hide-on-med-and-down">
-              <li><Link to={'/signin'}>Sign In</Link></li>
-              <li><Link to={'/signup'}>Sign Up</Link></li>
-            </ul>
-            <ul className="side-nav" id="mobile-demo">
-              <li><Link to={'/signin'}>Sign In</Link></li>
-              <li><Link to={'/signup'}>Sign Up</Link></li>
-            </ul>
-          </div>
-        </nav>
+        <div>
+          <Toolbar>
+            <ToolbarGroup firstChild={true}>
+              <FontIcon className="material-icons">home</FontIcon>
+              <ToolbarTitle text="React-NOS" />
+            </ToolbarGroup>
+            <ToolbarGroup>
+              <ToolbarSeparator />
+               <RaisedButton label="Signup" primary={true} />
+                <RaisedButton label="Signin" primary={true} value="/add" />
+                <FlatButton
+                  containerElement={<Link to="/login" />}
+                  label='SIGININ' />
+          <Link to={`/`} className="brand-logo">PTC Portal</Link>
+            </ToolbarGroup>
+          </Toolbar>
+      </div>
       );
     }
     return (
