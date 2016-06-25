@@ -1,16 +1,13 @@
-// const passportConfig = require('./config/passport.js');
-// import passportConfig from '../config/passport.js';
-
-// const UserController = require('../controllers/userController.js');
-// import passport from 'passport';
-// import '../config/passport.js';
-
+import passport from 'passport';
 import UserController from '../controllers/userController.js';
+import DataController from '../controllers/dataController.js';
 
-// const requireAuth = passport.authenticate('jwt', { session: false });
-// const requireSignin = passport.authenticate('local', { session: false });
+import '../config/passport.js';
 
-export default (app, express) => {
+const requireAuth = passport.authenticate('jwt', { session: false });
+const requireSignin = passport.authenticate('local', { session: false });
+
+module.exports = (app, express) => {
   var apiRouter = new express.Router();
 
   app.use('/api', apiRouter);
@@ -25,7 +22,8 @@ export default (app, express) => {
   //   next();
   // });
 
-  // apiRouter.post('/login', UserController.postSignin);
+  apiRouter.post('/login', requireSignin, UserController.signin);
   apiRouter.post('/signup', UserController.signup);
-};
+  apiRouter.get('/data', requireAuth, DataController.get);
 
+};

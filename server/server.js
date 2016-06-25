@@ -2,14 +2,13 @@ import express from 'express';
 import compression from 'compression';
 import logger from 'morgan';
 import expressValidator from 'express-validator';
-import dotenv from 'dotenv';
 import path from 'path';
 import bodyParser from 'body-parser';
 import passport from 'passport';
 import errorHandler from 'errorhandler';
 import lusca from 'lusca';
 import mongoose from 'mongoose';
-
+import dotenv from 'dotenv';
 dotenv.load({path: '.env'});
 
 import appRouter from './routes/appRouter.js';

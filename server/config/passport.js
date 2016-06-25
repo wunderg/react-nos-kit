@@ -2,6 +2,8 @@ import passport from 'passport';
 import LocalStrategy from 'passport-local';
 import { Strategy, ExtractJwt } from 'passport-jwt';
 import User from '../models/userModel.js';
+import dotenv from 'dotenv';
+dotenv.load({path: '.env'});
 
 const localOptions = { usernameField: 'email', passwordField: 'pass' };
 

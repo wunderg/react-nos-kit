@@ -15,6 +15,11 @@ class AboutPage extends React.Component {
     console.log(this);
     this.props.signupUser({email: 'hello@hello.com', password: 'pass12', confirmPassword: 'pass12'});
   }
+
+  onClick() {
+    console.log(this);
+    this.props.signupUser({email: 'hello@hello.com', password: 'pass12', confirmPassword: 'pass12'});
+  }
   render() {
     return (
       <div>
@@ -23,7 +28,8 @@ class AboutPage extends React.Component {
         </p>
         <p>
           <Link to="/badlink">Click this bad link</Link> to see the 404 page.
-            <button onClick={this.onClick}>REQUEST</button>
+            <button onClick={this.onClick}>REQUEST login</button>
+            <button onClick={this.onClick}>REQUEST data</button>
             </p>
           </div>
     );

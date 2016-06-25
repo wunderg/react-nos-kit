@@ -1,9 +1,9 @@
 import User from '../models/userModel.js';
 import jwt from 'jwt-simple';
 
+
 const token = (user) => {
   const secret = process.env.SESSION_SECRET;
-  console.log(secret);
   const timestamp = new Date().getTime();
   return jwt.encode({ sub: user.email, iat: timestamp }, secret);
 };
