@@ -5,62 +5,105 @@ import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import FontIcon from 'material-ui/FontIcon';
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
+import MediaQuery from 'react-responsive';
 
 import styles from './navbar_styles.js';
 
 class Navbar extends Component {
   constructor(props) {
     super(props);
-    this.state = {open: false, value: 3};
+    this.state = {open: false, mobile: false};
+  }
+
+  componentWillMount() {
+    if (window.innerWidth < 750) {
+      this.setState({mobile: true})
+    }
   }
 
   render() {
     if (!this.props.isAuthenticated) {
       return (
         <div>
-          <Toolbar>
-            <ToolbarGroup firstChild={true}>
-              <FontIcon className="material-icons">home</FontIcon>
-              <ToolbarTitle text="React-NOS" />
-            </ToolbarGroup>
-            <ToolbarGroup>
-              <ToolbarSeparator />
-               <RaisedButton label="Signup" primary={true} />
-                <RaisedButton label="Signin" primary={true} value="/add" />
+          <MediaQuery maxWidth={800}>
+            <Toolbar>
+              <ToolbarGroup firstChild={true}>
+                <FontIcon className="material-icons">home</FontIcon>
+                <ToolbarTitle text="React-NOS" />
+              </ToolbarGroup>
+              <ToolbarGroup>
+                <ToolbarSeparator />
                 <FlatButton
                   containerElement={<Link to="/login" />}
                   label='SIGININ' />
-          <Link to={`/`} className="brand-logo">PTC Portal</Link>
-            </ToolbarGroup>
-          </Toolbar>
-      </div>
+              </ToolbarGroup>
+            </Toolbar>
+          </MediaQuery>
+          {/********** Desktop **********/}
+          <MediaQuery minWidth={800}>
+            <Toolbar>
+              <ToolbarGroup firstChild={true}>
+                <FontIcon className="material-icons">home</FontIcon>
+                <ToolbarSeparator style={styles.navbar_desktop.separator} />
+                <ToolbarTitle text="React-NOS" />
+              </ToolbarGroup>
+              <ToolbarGroup>
+                <ToolbarSeparator style={styles.navbar_desktop.separator} />
+                <FlatButton
+                  style={styles.navbar_desktop.buttons}
+                  primary={true}
+                  containerElement={<Link to="/signin" />}
+                  label='Signin' />
+                <FlatButton
+                  style={styles.navbar_desktop.buttons}
+                  primary={true}
+                  containerElement={<Link to="/signup" />}
+                  label='Signup' />
+              </ToolbarGroup>
+            </Toolbar>
+          </MediaQuery>
+        </div>
       );
     }
     return (
-      <nav>
-        <div className="nav-wrapper">
-          <Link to={`/`} className="brand-logo">PTC Portal</Link>
-          <a href="#" data-activates="mobile-demo" className="button-collapse">
-            <i className="fa fa-align-justify"></i>
-          </a>
-          <ul className="right hide-on-med-and-down">
-            <li><Link to={'/add'}>Add data</Link></li>
-            <li><Link to={'/dashboard'}>Dashboard</Link></li>
-            <li><Link to={'/hiddenroute'}>Hidden Link</Link></li>
-            <li><Link to={'/hiddenroute'}>Hidden Link</Link></li>
-            <li><Link to={'/hiddenroute'}>Hidden Link</Link></li>
-            <li className="logout" onClick={this.props.logout}><Link to={''}>Logout</Link></li>
-          </ul>
-          <ul className="side-nav" id="mobile-demo">
-            <li><Link to={'/add'}>Add data</Link></li>
-            <li><Link to={'/dashboard'}>Dashboard</Link></li>
-            <li><Link to={'/hiddenroute'}>Hidden Link</Link></li>
-            <li><Link to={'/hiddenroute'}>Hidden Link</Link></li>
-            <li><Link to={'/hiddenroute'}>Hidden Link</Link></li>
-            <li onClick={this.props.logout}><Link to={''}>Loqout</Link></li>
-          </ul>
+        <div>
+          <MediaQuery maxWidth={800}>
+            <Toolbar>
+              <ToolbarGroup firstChild={true}>
+                <FontIcon className="material-icons">home</FontIcon>
+                <ToolbarTitle text="React-NOS" />
+              </ToolbarGroup>
+              <ToolbarGroup>
+                <ToolbarSeparator />
+                <FlatButton
+                  containerElement={<Link to="/login" />}
+                  label='SIGININ' />
+              </ToolbarGroup>
+            </Toolbar>
+          </MediaQuery>
+          <MediaQuery minWidth={800}>
+            <Toolbar>
+              <ToolbarGroup firstChild={true}>
+                <FontIcon className="material-icons">home</FontIcon>
+                <ToolbarSeparator style={styles.navbar_desktop.separator} />
+                <ToolbarTitle text="React-NOS" />
+              </ToolbarGroup>
+              <ToolbarGroup>
+                <ToolbarSeparator style={styles.navbar_desktop.separator} />
+                <FlatButton
+                  style={styles.navbar_desktop.buttons}
+                  primary={true}
+                  containerElement={<Link to="/signin" />}
+                  label='Signin' />
+                <FlatButton
+                  style={styles.navbar_desktop.buttons}
+                  primary={true}
+                  containerElement={<Link to="/signup" />}
+                  label='Signup' />
+              </ToolbarGroup>
+            </Toolbar>
+          </MediaQuery>
         </div>
-      </nav>
     );
   }
 }
