@@ -8,7 +8,7 @@ const App = (props) => {
     <MuiThemeProvider>
       <div>
         <Navbar />
-        MAIN COMPONENT 2 Yes
+        MAIN COMPONENT 2 Yes no
         {props.children}
       </div>
     </MuiThemeProvider>

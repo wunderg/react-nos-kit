@@ -25,11 +25,11 @@ class Navbar extends Component {
     if (!this.props.isAuthenticated) {
       return (
         <div>
-          <MediaQuery maxWidth={800}>
+          <MediaQuery maxDeviceWidth={800}>
             <Toolbar>
               <ToolbarGroup firstChild={true}>
                 <FontIcon className="material-icons">home</FontIcon>
-                <ToolbarTitle text="React-NOS" />
+                <ToolbarTitle text="React-NOS-Mobile" />
               </ToolbarGroup>
               <ToolbarGroup>
                 <ToolbarSeparator />
@@ -40,7 +40,7 @@ class Navbar extends Component {
             </Toolbar>
           </MediaQuery>
           {/********** Desktop **********/}
-          <MediaQuery minWidth={800}>
+          <MediaQuery minDeviceWidth={800}>
             <Toolbar>
               <ToolbarGroup firstChild={true}>
                 <FontIcon className="material-icons">home</FontIcon>

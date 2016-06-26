@@ -20,6 +20,7 @@ browserSync({
   ui: {
     port: 3001
   },
+  tunnel: true,
   server: {
     baseDir: 'src',
 

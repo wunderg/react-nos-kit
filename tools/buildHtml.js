@@ -18,7 +18,7 @@ fs.readFile('src/index.html', 'utf8', (readError, markup) => {
   const $ = cheerio.load(markup);
 
   // since a separate spreadsheet is only utilized for the production build, need to dynamically add this here.
-  $('head').append('<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">');
+  $('head').append('');
   $('head').append('<link rel="stylesheet" href="/styles.css">');
 
   fs.writeFile('dist/index.html', $.html(), 'utf8', (writeError) => {
